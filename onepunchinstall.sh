@@ -1,26 +1,28 @@
 #!/bin/bash
 
 echo -e "\e[1;42m OnePunchInstall Loaded \e[0m"
-
 sudo apt-get -y update
 sudo apt-get -y upgrade
 echo -e "\e[1;42m Updated and Upgraded \e[0m"
 sudo apt install -y git
 sudo apt install -y gcc
-sudo apt install make
+sudo apt install -y make
 sudo apt install -y perl
 sudo apt install -y ruby
 sudo apt install -y python-pip
 sudo apt install -y python3-pip
 sudo apt install -y ruby-bundler
 sudo apt-get install -y g++ git qtbase5-dev
-sudo apt install golang-go
+sudo apt install -y golang-go
 sudo apt install -y openjdk-11-jre-headless
 sudo apt install -y openjdk-11-jdk-headless
 sudo apt install -y gnupg2
+sudo apt install -y p7zip-full
 sudo apt install -y gpgv2 autoconf bison build-essential curl git-core libapr1 libaprutil1 libcurl4-openssl-dev libgmp3-dev libpcap-dev libpq-dev libreadline6-dev libsqlite3-dev libssl-dev libsvn1 libtool libxml2 libxml2-dev libxslt-dev libyaml-dev locate ncurses-dev openssl postgresql postgresql-contrib wget xsel zlib1g zlib1g-dev
 echo -e "\e[1;42m Depencies Installed \e[0m"
+sleep 2
 echo -e "\e[1;42m Proceeding To Install Tools :) \e[0m"
+sleep 2
 sudo apt install -y nmap
 echo -e "\e[1;42m Installed Nmap \e[0m"
 sleep 1
@@ -81,6 +83,41 @@ sleep 1
 sudo apt install -y gdb
 echo -e "\e[1;42m Installed gdb \e[0m"
 sleep 1
+pip install ROPGadget
+pip3 install ROPGadget
+echo -e "\e[1;42m Installed ROPGadget \e[0m"
+sleep 1
+pip install ropper
+pip3 install ropper
+echo -e "\e[1;42m Installed ropper \e[0m"
+sleep 1
+sudo apt install -y steghide
+echo -e "\e[1;42m Installed Steghide \e[0m"
+sleep 1
+sudo apt install -y audacity
+echo -e "\e[1;42m Installed Audacity \e[0m"
+sleep 1
+sudo apt install -y sonic-visualiser
+echo -e "\e[1;42m Installed Sonic-Visualizer \e[0m"
+sleep 1
+sudo apt install -y pngcheck
+echo -e "\e[1;42m Installed pngcheck \e[0m"
+sleep 1
+pip3 install stegcracker
+echo -e "\e[1;42m Installed Stegcracker \e[0m"
+sleep 1
+sudo apt install -y zbar-tools
+echo -e "\e[1;42m Installed zbar-tools \e[0m"
+sleep 1 
+sudo apt install -y stegsnow
+echo -e "\e[1;42m Installed Stegsnow \e[0m"
+sleep 1
+sudo apt install -y tcpflow
+echo -e "\e[1;42m Installed Tcpflow \e[0m"
+sleep 1
+sudo apt install -y testdisc
+echo -e "\e[1;42m Installed Testdisc \e[0m"
+sleep 1
 sudo apt install -y cherrytree
 echo -e "\e[1;42m Installed Cherrytree \e[0m"
 sleep 1
@@ -94,6 +131,29 @@ cd $HOME/tools
 sleep 1
 echo -e "\e[1;42m Cloning Github Repositories And Installing Them \e[0m"
 sleep 1
+if [[ ! -d peda ]]
+then
+	git clone https://github.com/longld/peda
+	echo "source $HOME/tools/peda/peda.py" >> ~/.gdbinit
+fi
+echo -e "\e[1;42m Installed PEDA \e[0m"
+sleep 1
+if [[ ! -d zsteg ]]
+then
+	git clone https://github.com/zed-0xff/zsteg
+	cd zsteg/bin
+	sudo gem install zsteg
+	echo -e "\e[1;33m May Take A Few Minutes. \e[0m"
+fi
+cd $HOME/tools
+echo -e "\e[1;42m Installed zsteg \e[0m"
+sleep 1
+if [[ ! -f stegsolve.jar ]]
+then
+	wget https://github.com/eugenekolo/sec-tools/raw/master/stego/stegsolve/stegsolve/stegsolve.jar
+fi
+echo -e "\e[1;42m Installed Stegsolve.jar \e[0m"
+sleep 1
 echo -e "\e[1;42m Installing Ghidra \e[0m"
 if [[ ! -d ghidra_9.0.1 ]]
 then
@@ -101,11 +161,12 @@ then
 	unzip ghidra_9.0.1_PUBLIC_20190325.zip
 	cd ghidra_9.0.1
 	chmod +x ghidraRun
+	rm ghidra_9.0.1_PUBLIC_20190325.zip
 fi
 cd $HOME/tools
 echo -e "\e[1;42m Installed Ghidra \e[0m"
 sleep 1
-if [[ ! -f jd ]]
+if [[ ! -f jd-gui-1.6.6.deb ]]
 then
 	wget https://github.com/java-decompiler/jd-gui/releases/download/v1.6.6/jd-gui-1.6.6.deb
 fi
@@ -142,6 +203,7 @@ then
 	wget https://sourceforge.net/projects/dex2jar/files/latest/download 
 	unzip download
 	rm download
+fi
 echo -e "\e[1;42m Installed Dex2jar \e[0m"
 sleep 1
 if [[ ! -f LinEnum.sh ]]
@@ -176,56 +238,56 @@ echo -e "\e[1;42m Installed Enum4Linux \e[0m"
 sleep 1
 if [[ ! -d setoolkit  ]]
 then
-        git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/
+    git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/
+	cd setoolkit
+	pip3 install -r requirements.txt
+	sudo python3 setup.py
 fi	
-cd setoolkiti
-pip3 install -r requirements.txt
-sudo python3 setup.py
 echo -e "\e[1;42m Installed setoolkit \e[0m"
 sleep 1
 cd $HOME/tools
 if [[ ! -d sqlmap-dev  ]]
 then
-        git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
+    git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
 fi
 echo -e "\e[1;42m Installed SQLmap \e[0m"
 sleep 1
 if [[ ! -d Wordpresscan  ]]
 then
-        git clone https://github.com/swisskyrepo/Wordpresscan
+    git clone https://github.com/swisskyrepo/Wordpresscan
+	cd Wordpresscan
+	pip install -r requirements.txt
 fi
-cd Wordpresscan
-pip install -r requirements.txt
 echo -e "\e[1;42m Installed Wordpresscan \e[0m"
 sleep 1
 cd $HOME/tools
 if [[ ! -d johnny  ]]
 then
-        git clone  https://github.com/shinnok/johnny.git && cd johnny
+    git clone  https://github.com/shinnok/johnny.git && cd johnny
+	git checkout v2.2
+	export QT_SELECT=qt5
+	qmake && make -j$(nproc)
 fi
-git checkout v2.2
-export QT_SELECT=qt5
-qmake && make -j$(nproc)
 cd $HOME/tools
 echo -e "\e[1;42m Installed Johnny \e[0m"
 sleep 1
 if [[ ! -d gobuster  ]]
 then
-        mkdir gobuster
+    mkdir gobuster
+	cd gobuster
+	wget https://github.com/OJ/gobuster/releases/download/v3.0.1/gobuster-linux-amd64.7z
+	7z x gobuster-linux-amd64.7z
+	mv gobuster-linux-amd64/gobuster .
+	rm -r gobuster-linux-amd64
+	chmod +x gobuster
 fi
-cd gobuster
-wget https://github.com/OJ/gobuster/releases/download/v3.0.1/gobuster-linux-amd64.7z
-7z x gobuster-linux-amd64.7z
-mv gobuster-linux-amd64/gobuster .
-rm -r gobuster-linux-amd64
-chmod +x gobuster
 cd $HOME/tools
 echo -e "\e[1;42m Installed Gobuster \e[0m"
 sleep 1
 if [[ ! -d DirBuster  ]]
 then
-        wget "http://downloads.sourceforge.net/project/dirbuster/DirBuster%20%28jar%20%2B%20lists%29/1.0-RC1/DirBuster-1.0-RC1.tar.bz2?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fdirbuster%2Ffiles%2FDirBuster%2520%2528jar%2520%252B%2520lists%2529%2F1.0-RC1%2F&ts=1370262745&use_mirror=nchc" -O DirBuster-1.0-RC1.tar.bz2
-        tar -xjvf DirBuster-1.0-RC1.tar.bz2
+    wget "http://downloads.sourceforge.net/project/dirbuster/DirBuster%20%28jar%20%2B%20lists%29/1.0-RC1/DirBuster-1.0-RC1.tar.bz2?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fdirbuster%2Ffiles%2FDirBuster%2520%2528jar%2520%252B%2520lists%2529%2F1.0-RC1%2F&ts=1370262745&use_mirror=nchc" -O DirBuster-1.0-RC1.tar.bz2
+    tar -xjvf DirBuster-1.0-RC1.tar.bz2
 	mv DirBuster-1.0-RC1 DirBuster
 	rm DirBuster-1.0-RC1.tar.bz2
 fi
@@ -248,22 +310,11 @@ fi
 echo -e "\e[1;42m Installed Wordlists \e[0m"
 sleep 1
 echo -e "\e[1;42m Installing Metasploit Framework \e[0m"
-gpg2 --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-curl -L https://get.rvm.io | bash -s stable
-source ~/.rvm/scripts/rvm
-echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
-source ~/.bashrc
-RUBYVERSION=$(wget https://raw.githubusercontent.com/rapid7/metasploit-framework/master/.ruby-version -q -O - )
-rvm install $RUBYVERSION
-rvm use $RUBYVERSION --default
-ruby -v
-git clone https://github.com/rapid7/metasploit-framework.git
-chown -R `whoami` metasploit-framework
-cd metasploit-framework
-rvm --default use ruby-${RUBYVERSION}@metasploit-framework
-sudo gem install bundler
-bundle install
+curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
+  chmod 755 msfinstall && \
+  ./msfinstall
 echo -e "\e[1;42m Installed Metasploit Framework \e[0m"
+echo -e "\e[1;33m When Opening msfconole (Metasploit) for the first, type 'no' when asked for creating msfdb \e[0m"
 sleep 1
 cd $HOME/tools
 echo -e "\e[1;42m DONE ! DONE ! DONE ! \e[0m"
