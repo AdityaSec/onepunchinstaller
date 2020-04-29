@@ -18,7 +18,7 @@ sudo apt install -y openjdk-11-jre-headless
 sudo apt install -y openjdk-11-jdk-headless
 sudo apt install -y gnupg2
 sudo apt install -y p7zip-full
-sudo apt install -y gpgv2 autoconf bison build-essential curl git-core libapr1 libaprutil1 libcurl4-openssl-dev libgmp3-dev libpcap-dev libpq-dev libreadline6-dev libsqlite3-dev libssl-dev libsvn1 libtool libxml2 libxml2-dev libxslt-dev libyaml-dev locate ncurses-dev openssl postgresql postgresql-contrib wget xsel zlib1g zlib1g-dev
+sudo apt install -y gpgv2 autoconf bison build-essential curl git-core libapr1 libaprutil1 libcurl4-openssl-dev libgmp3-dev libgmp-dev libpcap-dev libpq-dev libreadline6-dev libsqlite3-dev libssl-dev libsvn1 libtool libxml2 libxml2-dev libxslt-dev libxslt1-dev libyaml-dev ruby-dev locate ncurses-dev openssl postgresql postgresql-contrib wget xsel zlib1g zlib1g-dev
 echo -e "\e[1;42m Depencies Installed \e[0m"
 sleep 2
 echo -e "\e[1;42m Proceeding To Install Tools :) \e[0m"
@@ -117,6 +117,9 @@ echo -e "\e[1;42m Installed Tcpflow \e[0m"
 sleep 1
 sudo apt install -y testdisc
 echo -e "\e[1;42m Installed Testdisc \e[0m"
+sleep 1
+sudo gem install wpscan
+echo -e "\e[1;42m Installed WPscan \e[0m"
 sleep 1
 sudo apt install -y cherrytree
 echo -e "\e[1;42m Installed Cherrytree \e[0m"
